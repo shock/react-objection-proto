@@ -52,7 +52,6 @@ cd server
 yarn build
 node dist/index.js
 
-## Server - More info
+## Server
 
-`./server` is the root directory for the express.js server.  It is a full-blown backend server with database
-persistence using the objection.js and knex.js libraries.
+Read `./server/README.md` for more info
