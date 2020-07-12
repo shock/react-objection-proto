@@ -19,7 +19,7 @@ Model.knex(knex)
 const rootPath = path.join(__dirname, '../..');
 app.use(express.static(path.join(rootPath, 'build')));
 
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
     res.sendFile(path.join(rootPath, 'build', 'index.html'));
 });
 

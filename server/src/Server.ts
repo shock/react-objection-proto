@@ -50,25 +50,12 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 
 /************************************************************************************
- *                              Serve front-end content
+ *                              Test route
  ***********************************************************************************/
 
-const viewsDir = path.join(__dirname, 'views');
-app.set('views', viewsDir);
-const staticDir = path.join(__dirname, 'public');
-app.use(express.static(staticDir));
 
 app.get('/ping', function (req, res) {
     return res.send('pong');
-});
-
-app.get('/users', (req: Request, res: Response) => {
-    const jwt = req.signedCookies[cookieProps.key];
-    if (!jwt) {
-        res.redirect('/');
-    } else {
-        res.sendFile('users.html', {root: viewsDir});
-    }
 });
 
 
