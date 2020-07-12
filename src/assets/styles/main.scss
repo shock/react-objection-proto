@@ -1,0 +1,269 @@
+// External dependencies
+@import '~bootstrap/scss/bootstrap';
+@import '~bootswatch/dist/darkly/bootstrap.min';
+@import './layout';
+@import './json-view';
+@import './overrides';
+@import './custom-classes';
+@import './colors';
+
+body {
+  // font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
+  font-size: calc(14px + (20 - 14) * ((100vw - 300px) / (1800 - 300)));
+}
+
+.custom-select {
+  font-size: 1.02rem;
+}
+
+div.async_busy {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 10000000;
+  cursor: progress;
+  display: none;
+  background-image: url('../images/busy-2.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+
+}
+
+span.react-numeric-input input {
+  max-width: 7.5rem;
+}
+
+$inc-dec-bg: #eee;
+$inc-dec-color: #000;
+
+.NumCell {
+  display: inline-block;
+  padding: 0.01rem;
+  span.react-numeric-input input, span.sum {
+    width: 100%;
+    min-width: 7.5rem;
+  }
+  span.sum {
+    display: inline-block;
+  }
+}
+
+$lighter1: +10%;
+$lighter2: +18%;
+$lighter3: +26%;
+
+$troopDefSpace: 1rem;
+
+.TroopDefView {
+  margin-bottom: 0.5rem;
+  label {
+    text-align: left;
+    min-width: 5.6rem;
+    margin: 0 $troopDefSpace 0 0;
+  }
+
+  .TroopCount {
+    margin-right: $troopDefSpace;
+    input {
+      &.Infantry { background-color: adjust-color($troopCountColor, $lightness: $lighter1); }
+      &.Cavalry { background-color: adjust-color($troopCountColor, $lightness: $lighter2); }
+      &.Distance { background-color: adjust-color($troopCountColor, $lightness: $lighter3); }
+    }
+  }
+  .TroopPercent {
+    margin-right: $troopDefSpace;
+    input {
+      &.Infantry { background-color: $troopPercentColor; }
+      &.Cavalry { background-color: $troopPercentColor; }
+      &.Distance { background-color: $troopPercentColor; }
+    }
+    &.hasDelta {
+      input {
+        &.Infantry { background-color: $troopPercentErrorColor; }
+        &.Cavalry { background-color: $troopPercentErrorColor; }
+        &.Distance { background-color: $troopPercentErrorColor; }
+      }
+    }
+    &.locked {
+      input {
+        background-color: $troopLockedColor;
+      }
+    }
+  }
+}
+
+.TierDefView {
+  & > div {
+    text-align: left;
+    padding: 0 1rem;
+  }
+  .TierNum {
+    min-width: 6rem;
+  }
+  .TierProps {
+    min-width: 10rem;
+    text-align: left;
+    label {
+      width: 10rem;
+    }
+    .TierPercent {
+      &.hasDelta {
+        input {
+          background-color: $troopPercentErrorColor;
+        }
+      }
+      &.locked {
+        input {
+          background-color: $troopLockedColor;
+        }
+      }
+    }
+  }
+  .TierDefs {
+    min-width: 28rem;
+  }
+  padding: 1rem 0;
+  &.even {
+    background-color: rgba(255,255,255,0.08)
+  }
+  label.tierLabel {
+    font-size: 2.3rem;
+  }
+}
+
+.CalculatorView {
+  fieldset {
+    margin-bottom: 1rem;
+  }
+}
+
+$icon-ok: rgb(108, 128, 243);
+$icon-green: rgb(142, 211, 142);
+$icon-red: rgb(187, 102, 102);
+$icon-unlocked: rgb(100, 223, 100);
+$icon-action: rgb(250, 234, 90);
+.LockState {
+  cursor: pointer;
+  margin: 0 0.3rem 0 0 ;
+  &.locked {
+    color: $icon-red;
+  }
+  &.unlocked {
+    color: $icon-unlocked;
+  }
+}
+
+.PercentDelta {
+  margin: 0 0.3rem 0 0 ;
+  &.delta {
+    color: $icon-action;
+    cursor: pointer;
+  }
+  &.no-delta {
+    color: $icon-ok;
+  }
+}
+
+.SummaryView {
+  margin: 1rem auto 0;
+  display: inline-block;
+  th {
+    &.name { width: 15rem; border-width: 0px; font-size: 110%;}
+    &.count { width: 6rem; }
+    &.percent { width: 6rem; }
+    &.power { width: 6rem; }
+  }
+  th, td {
+    padding: 0.7rem;
+    border: 1px solid;
+  }
+  tr.sum {
+    td.name {
+      border: none
+    }
+  }
+}
+
+.FormEntryView {
+  h3 {
+    min-width: 4.4rem;
+  }
+}
+.FCP-form-select {
+  select {
+    max-width: 73%;
+  }
+}
+
+.FCP-view-select {
+  display: inline-block;
+  select{
+    width: 8rem;
+  }
+}
+
+.FCP-select {
+  label {
+    margin-right: 0.3rem;
+  }
+}
+
+.fcNameForm {
+  min-width: 20rem;
+  & > div {
+    cursor: pointer;
+  }
+  .fcName {
+    font-size: 1.40625rem;
+  }
+  .fcNicon {
+    font-size: 0.8rem;
+    padding: 0 0 0 0.2rem;
+    margin-bottom: 0.1rem;
+  }
+  input {
+    max-width: 15rem;
+    display: inline-block;
+  }
+
+}
+
+.controls-row {
+  max-width: 60rem;
+}
+
+$fe-inf-color: rgb(169, 227, 253);
+$fe-cav-color: rgb(253, 204, 170);
+$fe-dst-color: rgb(189, 255, 173);
+.FEV-troop-view {
+  .troop-type {
+    width: 6rem;
+    font-size: 1.5rem;
+  }
+  margin-bottom: 0.5rem;
+  .troop-entry {
+    margin-bottom: 2px;
+    &.Infantry { background-color: $fe-inf-color; }
+    &.Cavalry { background-color: $fe-cav-color; }
+    &.Distance { background-color: $fe-dst-color; }
+  }
+}
+
+div.alert {
+  cursor: pointer;
+}
+
+@include media-breakpoint-down(xs) {
+  span.react-numeric-input input, span.sum {
+    max-width: 8rem;
+  }
+  .NumCell {
+    display: inline-block;
+    padding: 0.01rem;
+    span.react-numeric-input input, span.sum {
+      width: 8rem;
+    }
+  }
+}
